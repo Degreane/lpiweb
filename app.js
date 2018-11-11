@@ -6,12 +6,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var utils=require('util')
+var expressHbs = require('express-handlebars');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+
+//app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
