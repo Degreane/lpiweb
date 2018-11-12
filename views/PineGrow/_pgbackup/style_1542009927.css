@@ -1,0 +1,6 @@
+.footer {
+    bottom: 2px;
+    position: absolute;
+    border: 2px ridge #e3adad;
+    border-radius: 5px;
+}

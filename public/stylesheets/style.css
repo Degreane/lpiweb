@@ -1,9 +1,38 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #f6fe6e;
+  background-color: #ccffff;
+  height:100%;
 }
 
 a {
   color: #00B7FF;
+}
+.navbar-brand {
+	text-shadow: 1px 1px 10px #020202, -1px -1px 10px #040404;
+    color: #ffffff !important;
+    font-style: italic;
+    font-family: fantasy;
+    font-weight: bolder;
+}
+
+.footer {
+	bottom: 0px;
+    position: absolute;
+    width:100%;
+    padding-right:2px;
+    padding-left:2px;
+
+}
+.footer > .alert{
+	margin-bottom: 0px;
+	font-size:x-small;
+	padding-bottom:2px;
+	padding-top:2px;
+}
+.navbar {
+	border-radius:5px;
+
+}
+.navbar.alert {
+	padding:0px;
 }
