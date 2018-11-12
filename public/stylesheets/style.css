@@ -7,8 +7,8 @@ body {
 a {
   color: #00B7FF;
 }
-.navbar-brand {
-	text-shadow: 1px 1px 10px #020202, -1px -1px 10px #040404;
+.brand {
+	text-shadow: 1px 1px 10px #020202, -1px -1px 10px #020202;
     color: #ffffff !important;
     font-style: italic;
     font-family: fantasy;
@@ -35,4 +35,21 @@ a {
 }
 .navbar.alert {
 	padding:0px;
+}
+.box-shadow-inset-1 {
+	box-shadow: inset #d6e9c6 5px 5px 20px 0px, inset #d6e9c6 -5px -5px 20px 0px;
+}
+
+.rounded-bottom-right-5 {
+	border-bottom-right-radius: 5px;
+}
+
+.rounded-bottom-left-5 {
+	border-bottom-left-radius: 5px;
+}
+.icon-bar-white {
+	background-color: white;
+}
+.icon-bar-black {
+	background-color: black;
 }

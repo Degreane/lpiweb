@@ -3,16 +3,55 @@
         <div class="container-fluid"> 
             <div class="navbar-header"> 
                 <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5" aria-expanded="false"> 
-                    <span class="sr-only">Toggle navigation</span> 
-                    <span class="icon-bar"></span> 
-                    <span class="icon-bar"></span> 
-                    <span class="icon-bar"></span> 
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar icon-bar-white"></span> 
+                    <span class="icon-bar icon-bar-white"></span> 
+                    <span class="icon-bar icon-bar-white"></span> 
                 </button>                 
-                <a href="#" class="navbar-brand">LpiWeb</a> 
+                <a href="#" class="navbar-brand brand">LpiWeb</a> 
             </div>             
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5"> 
-                <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> 
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+                {{#if lgdIn}}
+                    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link" id="lgOutLink"></a></p> 
+                {{else}}
+                    <p class="navbar-text navbar-right"><a href="#" class="navbar-link" id="lgInLink">LogIn</a></p> 
+                {{/if}}
             </div>             
         </div>         
     </nav>
 </div>
+{{#unless lgdIn}}
+<div class="container hidden" id="lgnPanel">
+    <div class="panel panel-success col-md-6 col-md-offset-3 box-shadow-inset-1"> 
+        <div class="panel-heading rounded-bottom-right-5 rounded-bottom-left-5"> 
+            <h2 class="panel-title text-center brand">Log In</h2> 
+        </div>             
+        <div class="panel-body">
+             <form class="form-horizontal"> 
+                    <div class="form-group"> 
+                        <label class="sr-only" for="UserName">UserName</label>                         
+                        <input type="text" class="form-control text-center" id="username" placeholder="UserName"> 
+                    </div>                     
+                    <div class="form-group"> 
+                        <label class="sr-only" for="Password">Password</label>                         
+                        <input type="password" class="form-control text-center" id="Password" placeholder="Password"> 
+                    </div> 
+                    <div class="form-group text-center">                    
+                        <button type="submit" class="btn btn-default" id="signInBtn">Sign in</button> 
+                    </div>
+                </form>
+
+        </div>             
+    </div>
+</div>
+<script type="text/javascript">
+    $('#lgInLink').on('click',function(e){
+        e.preventDefault()
+        $('#lgnPanel').toggleClass('hidden')
+    })
+    $('#signInBtn').on('click',function(e){
+        e.preventDefault()
+        alert('signing In ')
+    })
+</script>
+{{/unless}}
