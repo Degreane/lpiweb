@@ -10,8 +10,13 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "mongodb": "^3.1.9",
+    "mongoose": "^5.3.11",
+    "mongoskin": "^2.1.0",
+    "morgan": "~1.9.0",
+    "uuid": "^3.3.2"
   }
 }

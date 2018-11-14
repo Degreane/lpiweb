@@ -12,7 +12,7 @@
             </div>             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
                 {{#if lgdIn}}
-                    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link" id="lgOutLink"></a></p> 
+                    <p class="navbar-text navbar-right"><a href="#" class="navbar-link" id="lgOutLink">logOut</a></p> 
                 {{else}}
                     <p class="navbar-text navbar-right"><a href="#" class="navbar-link" id="lgInLink">LogIn</a></p> 
                 {{/if}}
@@ -30,11 +30,11 @@
              <form class="form-horizontal"> 
                     <div class="form-group"> 
                         <label class="sr-only" for="UserName">UserName</label>                         
-                        <input type="text" class="form-control text-center" id="username" placeholder="UserName"> 
+                        <input type="text" class="form-control text-center" id="username" placeholder="UserName" name="UserName"> 
                     </div>                     
                     <div class="form-group"> 
                         <label class="sr-only" for="Password">Password</label>                         
-                        <input type="password" class="form-control text-center" id="Password" placeholder="Password"> 
+                        <input type="password" class="form-control text-center" id="Password" placeholder="Password" name="PassWord"> 
                     </div> 
                     <div class="form-group text-center">                    
                         <button type="submit" class="btn btn-default" id="signInBtn">Sign in</button> 
@@ -45,13 +45,66 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#lgInLink').on('click',function(e){
-        e.preventDefault()
-        $('#lgnPanel').toggleClass('hidden')
+    $(function(){
+        // toggle show hide for login panel
+        $('#lgInLink').on('click',function(e){
+            e.preventDefault()
+            $('#lgnPanel').toggleClass('hidden')
+        })
+        // do actual signing in from within username/password panel 
+        // check for validation errors and if any found 
+        // if no errors found then do actual submit in jquery ajax mode
+        $('#signInBtn').on('click',function(e){
+            e.preventDefault()
+            let u=$('#username')
+            let p=$('#Password')
+            let validationFields = FieldValidate([
+                {
+                    id:u,
+                    required:true,
+                    minLength:3,
+                    maxLength:15,
+                    strip:true
+                },
+                {
+                    id:p,
+                    required:true,
+                    minLength:3,
+                    strip:true
+                }
+            ])
+            if (validationFields == false) {
+                $.ajax({
+                    method:"POST",
+                    url:'/user/logMeIn',
+                    data: {
+                        u:u.val(),
+                        p:p.val()
+                    }
+                }).done(function(msg){
+                    console.log(msg)
+                }).fail(function(jqXHR,textStatus){
+                    console.log('Failed')
+                    console.log(jqXHR)
+                    console.log(textStatus)
+                })
+            }
+        })    
     })
-    $('#signInBtn').on('click',function(e){
-        e.preventDefault()
-        alert('signing In ')
+    
+</script>
+{{else}}
+<script type="text/javascript">
+    $(function(){
+        $('#lgOutLink').on('click',function(e){
+            e.preventDefault()
+            $.ajax({
+                method:'POST',
+                url:'/user/logMeOut'
+            }).done(function(msg){
+                document.location='/'
+            })
+        })
     })
 </script>
 {{/unless}}

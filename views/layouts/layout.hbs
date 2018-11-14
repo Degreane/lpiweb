@@ -15,10 +15,49 @@
       <script src="/javascripts/html5shiv.min.js"></script>
       <script src="/javascripts/respond.min.js"></script>
     <![endif]-->
+     <script type="text/javascript">
+      let FieldValidate
+      $(function(){
+        FieldValidate =function(Obj) {
+            //Checks for error 
+            // returns false  no errors
+            // if errors returns err object array
+            let err=[]
+            Obj.forEach(function(id){
+                let theField=id['id']
+                let val=theField.val()
+                
+                if (id.strip) {
+                    // replace all instances if strip is set to true
+                    val=val.replace(/ /g,'')
+                }else if (id.trim) {
+                    //else if trim is set then remove only outer spaces
+                    val=val.trim()
+                }
+                if(id.required && val.length <1){
+                    err.push({id:theField,msg:'Field <strong>('+theField.attr('name')+')</strong> can not be empty'})  
+                }
+                if (id.minLength && val.length < id.minLength){
+                    err.push({id:theField,msg:'Field <strong>('+theField.attr('name')+')</strong> should have more than '+id.minLength+' Characters'})      
+                }
+                if (id.maxLength && val.length > id.maxLength) {
+                    err.push({id:theField,msg:'Field <strong>('+theField.attr('name')+')</strong> can not exceed '+id.maxLength +' Max Length'})
+                }
+            })
+            if (err.length > 0) {
+                return err
+            }else{
+                return false
+            }
+        }  
+      }())
+      
+    </script>
   </head>
   <body>
   	{{> header}}
     {{{body}}}
     {{> footer}}
+
   </body>
 </html>
