@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const db=mongoose.connect('mongodb://localhost:27017/AdySys',{ useNewUrlParser: true })
+mongoose.Promise = global.Promise
 const Schema = mongoose.Schema
 const UserModel = new Schema({
 	'name':{ type: String},

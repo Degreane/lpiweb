@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif,"Times New Roman", Times, serif;
   background-color: #ccffff;
   height:100%;
 }
@@ -11,8 +11,19 @@ a {
 	text-shadow: 1px 1px 10px #020202, -1px -1px 10px #020202;
     color: #ffffff !important;
     font-style: italic;
-    font-family: fantasy;
+    font-family: "Times New Roman", Times, serif;
     font-weight: bolder;
+}
+.links {
+	text-shadow: 1px 1px 10px #0202f2, -1px -1px 10px #0202f2;
+    color: #ffffff !important;
+    font-style: italic;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bolder;	
+}
+.links:hover{
+	text-shadow: 1px 1px 10px #f20202, -1px -1px 10px #f20202;
+    color: #ffffff !important;
 }
 
 .footer {
@@ -78,4 +89,10 @@ a {
 	border-width:1px;
 	border-color:red;
 	border-style:solid;
+}
+.bg-success {
+	background-color: #dff0d8 !important;
+}
+.navbar-collapse.in {
+     overflow-y: unset; 
 }

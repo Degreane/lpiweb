@@ -6,8 +6,6 @@ const session = require('express-session');
 const uuid = require('uuid');
 var logger = require('morgan');
 
-// const mongoose = require('mongoose')
-// const db=mongoose.connect('mongodb://localhost:27017/AdySys')
 const {db,collection} = require('./models')
 
 var indexRouter = require('./routes/index');
@@ -18,13 +16,9 @@ var expressHbs = require('express-handlebars');
 
 var app = express();
 
-/*console.log('Collections ----- > ')
-console.log(collection)
-console.log('<-------------------')*/
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 
-//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
@@ -39,14 +33,6 @@ app.use(function (req,res,next) {
 		return next(new Error('No Users Collection.'))
 	}
 	req.collection=collection
-	/*req.collection.users.find({'userType':'admin'},function(err,result){
-		if (err){
-			return next(new Error(err))
-		}
-		console.log('resulting ')
-		console.log(result)
-		return next()
-	})*/
 	return next()
 })
 
