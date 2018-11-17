@@ -29,7 +29,7 @@ UserModelInstance.find({userType:'admin'},function(err,users){
 module.exports = {
 	db:db,
 	collection:{
-		user:mongoose.model('users',UserModel)
+		users:mongoose.model('users',UserModel)
 	}
 }
 return module.exports

@@ -18,9 +18,9 @@ var expressHbs = require('express-handlebars');
 
 var app = express();
 
-console.log('Collections ----- > ')
+/*console.log('Collections ----- > ')
 console.log(collection)
-console.log('<-------------------')
+console.log('<-------------------')*/
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 
@@ -35,18 +35,19 @@ app.use(session({secret:uuid.v4(),resave: true,  saveUninitialized: true}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req,res,next) {
-	if ( !collections.users ){
+	if ( !collection.users ){
 		return next(new Error('No Users Collection.'))
 	}
-	req.collections=collection
-	req.collections.users.find({'type':'admin'},function(err,result){
+	req.collection=collection
+	/*req.collection.users.find({'userType':'admin'},function(err,result){
 		if (err){
 			return next(new Error(err))
 		}
 		console.log('resulting ')
 		console.log(result)
 		return next()
-	})
+	})*/
+	return next()
 })
 
 app.use('/', indexRouter);

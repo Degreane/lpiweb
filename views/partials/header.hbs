@@ -21,7 +21,7 @@
     </nav>
 </div>
 {{#unless lgdIn}}
-<div class="container hidden" id="lgnPanel">
+<div class="container hidden absolute width100pct" id="lgnPanel" >
     <div class="panel panel-success col-md-6 col-md-offset-3 box-shadow-inset-1"> 
         <div class="panel-heading rounded-bottom-right-5 rounded-bottom-left-5"> 
             <h2 class="panel-title text-center brand">Log In</h2> 
@@ -82,11 +82,46 @@
                         p:p.val()
                     }
                 }).done(function(msg){
-                    console.log(msg)
+                    let systemmsgs=$('#systemmsgs')
+                    if(msg['lgn'] == 'Success') {
+                        let idofMsg=_.random(0,1000,true)
+                        let msgHtml=$("<div class='alert alert-success'  id='cl"+idofMsg+"'> <span class='glyphicon glyphicon-check' aria-hidden='true'></span> Welcome <strong>"+msg['user']['name']+" </strong> </div>")
+                        $(msgHtml).hide().appendTo(systemmsgs).fadeIn(500)
+                        setTimeout(function(){
+                            $(msgHtml).fadeOut(500,function(){
+                              $(msgHtml).remove()
+                              document.location='/'
+                            })
+                        }, 3000)
+                    }else if (msg['lgn'] == 'Error') {
+                        let idofMsg=_.random(0,1000,true)
+                        let msgHtml=$("<div class='alert alert-danger'  id='cl"+idofMsg+"'> <span class='glyphicon glyphicon-lock' aria-hidden='true'></span> <strong>"+msg['msg']+" </strong> </div>")
+                        $(msgHtml).hide().appendTo(systemmsgs).fadeIn(500)
+                        setTimeout(function(){
+                            $(msgHtml).fadeOut(500,function(){
+                              $(msgHtml).remove()
+                              // document.location='/'
+                            })
+                        }, 15000)
+                    }
                 }).fail(function(jqXHR,textStatus){
                     console.log('Failed')
                     console.log(jqXHR)
                     console.log(textStatus)
+                })
+            }else{
+                let systemmsgs=$('#systemmsgs')
+                _.forEach(validationFields,function(value){
+                    let idofMsg=_.random(0,1000,true)
+                    let msgHtml=$("<div class='alert alert-warning'  id='cl"+idofMsg+"'> <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> "+value['msg']+"</div>")
+                    $(msgHtml).hide().appendTo(systemmsgs).fadeIn(500)
+                    setTimeout(function(){
+                        $(msgHtml).fadeOut(500,function(){
+                          $(msgHtml).remove()  
+                        })
+                    }, 15000)
+                    
+                    
                 })
             }
         })    

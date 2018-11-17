@@ -17,7 +17,7 @@ a {
 
 .footer {
 	bottom: 0px;
-    position: absolute;
+    position: fixed;
     width:100%;
     padding-right:2px;
     padding-left:2px;
@@ -52,4 +52,30 @@ a {
 }
 .icon-bar-black {
 	background-color: black;
+}
+.msgs {
+	
+	width: 20%;
+    right: 20px;
+    margin-left: auto;
+    top: 0px;
+    margin-bottom: auto;
+    position: relative;
+}
+.msgs > .alert {
+	margin-bottom: 1px;
+	font-size:smaller;
+}
+.absolute {
+	position: absolute;
+} 
+.width100pct {
+	width: 100%;
+}
+
+.itemBorders {
+	border-radius: 5px;
+	border-width:1px;
+	border-color:red;
+	border-style:solid;
 }
